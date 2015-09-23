@@ -64,16 +64,27 @@
  */
 
 int solution(std::vector<int> &A) {
+    // write your code in C++11
+    
     int sizeA = (int)A.size();
-    int total = (sizeA*(sizeA+1))/2;
-   
+    std::vector<int> permutation(sizeA);
     for (int i = 0; i < sizeA; i++) {
-        int element = A.at(i);
-        total -= element;
-        if (total == 0) {
-            return 1;
+        if (A.at(i) > sizeA) {
+            return 0;
         }
+        permutation.at(A.at(i)-1) = 1;
     }
+    
+    int sum = 0;
+    for (int i = 0; i < sizeA; i++) {
+        int element = permutation.at(i);
+        sum += element;
+    }
+    
+    if (sum == sizeA) {
+        return 1;
+    }
+    
     return 0;
 }
 
